@@ -42,6 +42,16 @@
     <Compile Include="judian\settings.py" />
     <Compile Include="judian\urls.py" />
     <Compile Include="judian\wsgi.py" />
+    <Compile Include="monitor\admin.py" />
+    <Compile Include="monitor\apps.py" />
+    <Compile Include="monitor\migrations\__init__.py" />
+    <Compile Include="monitor\models.py" />
+    <Compile Include="monitor\tests.py" />
+    <Compile Include="monitor\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="monitor\views.py" />
+    <Compile Include="monitor\__init__.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />
@@ -54,8 +64,12 @@
     <Folder Include="app\templates\" />
     <Folder Include="app\templates\app\" />
     <Folder Include="judian\" />
+    <Folder Include="monitor\" />
+    <Folder Include="monitor\migrations\" />
+    <Folder Include="monitor\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="monitor\templates\index.html" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />
