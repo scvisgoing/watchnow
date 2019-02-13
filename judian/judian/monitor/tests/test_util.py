@@ -1,6 +1,7 @@
 import unittest
 import datetime
-import util
+#import util # 若你執行的目錄是在 monitor底下這沒問題
+from monitor import util # 我們現在執行 python manage.py test 是在 judian 目錄下
 
 class TestUtil(unittest.TestCase):
     def test_Config(self):
@@ -46,9 +47,8 @@ class TestUtil(unittest.TestCase):
         with self.assertRaises(ValueError):
             util.get_config_option({'empty_string': ''}, 'empty_string', required_type='str', allow_empty=False)
 
-        from util import MonitorConfigurationError
-        with self.assertRaises(MonitorConfigurationError):
-            util.get_config_option('not a dict', "doesn't matter", exception=MonitorConfigurationError)
+        with self.assertRaises(util.MonitorConfigurationError):
+            util.get_config_option('not a dict', "doesn't matter", exception=util.MonitorConfigurationError)
 
     def test_Format(self):
         self.assertEqual(util.format_datetime(None), "")
