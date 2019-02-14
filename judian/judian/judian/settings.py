@@ -128,9 +128,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
 
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
-    ]
+    # 使用 dj 標準的 `django.contrib.auth` permissions, 或僅允許未認證使用者只能 read-only
+    #'DEFAULT_PERMISSION_CLASSES': (
+    #    'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly', # IsAdminUser, IsAuthenticated(必須登入才能使用)
+    #),
 }

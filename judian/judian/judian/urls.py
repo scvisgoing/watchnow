@@ -48,4 +48,5 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')), # support DRF's login/logout views
     # with above you can use /api-auth/login & /api-auth/logout
     # after you type /api-auth/login and login ok, it will show an error complain about /accounts/profile/, don't worry for that
+    url(r'^monitor/v1/', include('monitor.urls')), # monitor.urls.py 是下一層的 url 要自己寫
 ]
