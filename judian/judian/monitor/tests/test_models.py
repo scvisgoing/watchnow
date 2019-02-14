@@ -1,5 +1,5 @@
 from django.test import TestCase
-
+import datetime
 from monitor.models import Host
 
 class TestMovieHost(TestCase):
@@ -13,6 +13,15 @@ class TestMovieHost(TestCase):
         self.assertEqual(host.name, str(host))
         self.assertEqual(host.ipv4, '10.62.41.51')
         self.assertEqual(host.bound_for, None)
+        self.assertEqual(host.pub_date, None)
+
+        # 測試一下 pub_date
+        host.pub_date = datetime.date(2005, 1, 1)
+        host.save()
+        self.assertIsInstance(host.pub_date, datetime.date)
+        host.pub_date = '2019-06-23'
+        host.save()
+        self.assertIsInstance(host.pub_date, str)
 
     def build_bound_for(self):
         self.bound_host = Host(name='VimDesktop-BBB', ipv4='10.62.40.88')
@@ -24,13 +33,9 @@ class TestMovieHost(TestCase):
         self.assertEqual(self.bound_host.ipv4, '10.62.40.88')
         self.assertEqual(self.host.bound_for, self.bound_host)
         self.assertEqual(self.bound_host.bebound.get(), self.host)
-        #print('@@@@@', self.bound_host.bebound.get())
 
-    #def test_bound_for(self):
-    #    self.build_bound_for()
     def test_bound_for_delete_host(self):
         self.build_bound_for()
-        print(f'I like host {self.host} bound {self.bound_host}')
         self.host.delete() # 只刪除db 這instance仍有資料
         self.assertEqual(Host.objects.count(), 1)
         self.assertNotEqual(self.host, None)
