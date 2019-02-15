@@ -44,10 +44,45 @@
     <Compile Include="judian\wsgi.py" />
     <Compile Include="monitor\admin.py" />
     <Compile Include="monitor\apps.py" />
+    <Compile Include="monitor\austinlog.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="monitor\envconfig.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="monitor\migrations\__init__.py" />
     <Compile Include="monitor\models.py" />
-    <Compile Include="monitor\tests.py" />
+    <Compile Include="monitor\monitor.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="monitor\serializers.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="monitor\tests\test_add.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="monitor\tests\test_django.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="monitor\tests\test_main.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="monitor\tests\test_models.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="monitor\tests\test_util.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="monitor\tests\test_views.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="monitor\tests\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="monitor\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="monitor\util.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="monitor\views.py" />
@@ -66,10 +101,15 @@
     <Folder Include="judian\" />
     <Folder Include="monitor\" />
     <Folder Include="monitor\migrations\" />
+    <Folder Include="monitor\tests\" />
     <Folder Include="monitor\templates\" />
+    <Folder Include="monitor\tests\mocks\" />
+    <Folder Include="monitor\tests\mocks\ini\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="monitor\templates\index.html" />
+    <Content Include="monitor\tests\mocks\ini\monitor-nointerval.ini" />
+    <Content Include="monitor\tests\mocks\ini\monitor.ini" />
     <Content Include="requirements.txt" />
     <Content Include="db.sqlite3" />
     <Content Include="app\static\app\content\bootstrap.css" />
