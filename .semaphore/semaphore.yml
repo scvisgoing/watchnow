@@ -1,0 +1,49 @@
+﻿version: v1.0
+name: First Judian pipeline
+agent:
+  machine:
+    type: e1-standard-2
+    os_image: ubuntu1804
+blocks:
+  - name: Setup
+    task:
+      env_vars:
+        - name: APP_ENV
+          value: dev
+      jobs:
+        - name: Cache pip downloads
+          commands:
+            - sem-version python 3.7
+            - python --version
+            # Add --local pip bin to $PATH
+            - export PATH=$HOME/.local/bin:$PATH
+            - checkout
+            - mkdir .pip_cache
+            - ls -1
+            - echo $APP_ENV
+            - echo "Good to start..."
+            - cache restore requirements-$SEMAPHORE_GIT_BRANCH-$(checksum requirements.txt),requirements-$SEMAPHORE_GIT_BRANCH-,requirements-master-
+            - pip download --cache-dir .pip_cache -r requirements.txt
+            - cache store requirements-$SEMAPHORE_GIT_BRANCH-$(checksum requirements.txt) .pip_cache
+            - echo "done"
+  - name: Lint code
+    task:
+      jobs:
+        - name: Project
+          commands:
+            - echo "Thomas you should make lint here"
+  - name: Unit tests
+    task:
+      prologue:
+        commands:
+          - sem-version python 3.7
+          - python --version
+          - checkout
+          - cache restore requirements-$SEMAPHORE_GIT_BRANCH-$(checksum requirements.txt)
+          # Use --user to avoid permission conflicts
+          - pip install --user --cache-dir .pip_cache -r requirements.txt
+      jobs:
+        - name: Unit
+          commands:
+            - echo "Thomas you are good to run unit test here"
+            - python manage.py test monitor
