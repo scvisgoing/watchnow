@@ -20,7 +20,7 @@ urlpatterns = [
     url(r'^contact$', app.views.contact, name='contact'),
     url(r'^about', app.views.about, name='about'),
     url(r'^login/$',
-        django.contrib.auth.views.login,
+        django.contrib.auth.views.auth_login, # function fail after upgrade to dj 2.x
         {
             'template_name': 'app/login.html',
             'authentication_form': app.forms.BootstrapAuthenticationForm,
@@ -32,7 +32,7 @@ urlpatterns = [
         },
         name='login'),
     url(r'^logout$',
-        django.contrib.auth.views.logout,
+        django.contrib.auth.views.auth_logout, # function fail after upgrade to dj 2.x
         {
             'next_page': '/',
         },
