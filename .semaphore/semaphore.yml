@@ -18,6 +18,7 @@ blocks:
             # Add --local pip bin to $PATH
             - export PATH=$HOME/.local/bin:$PATH
             - checkout
+            - cd judian/judian
             - mkdir .pip_cache
             - ls -1
             - echo $APP_ENV
