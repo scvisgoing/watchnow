@@ -87,6 +87,9 @@
     </Compile>
     <Compile Include="monitor\views.py" />
     <Compile Include="monitor\__init__.py" />
+    <Compile Include="Procfile">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />
@@ -107,6 +110,8 @@
     <Folder Include="monitor\tests\mocks\ini\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include=".coveragerc" />
+    <Content Include=".pylintrc" />
     <Content Include="monitor\templates\index.html" />
     <Content Include="monitor\tests\mocks\ini\monitor-nointerval.ini" />
     <Content Include="monitor\tests\mocks\ini\monitor.ini" />
