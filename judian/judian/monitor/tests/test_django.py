@@ -1,12 +1,11 @@
-import os, sys
-import django
-from django.test import TestCase
+"""
+Test if we can support django.test.TestCase
 
-# TODO: Configure your database in settings.py and sync before running tests.
-if not 'D:\\learn2earn\\watchnow\\judian\\judian' in sys.path:
-    sys.path.insert(0, 'D:\\learn2earn\\watchnow\\judian\\judian')
-    print(f'Let us see system path: {sys.path}')
-os.environ.update({"DJANGO_SETTINGS_MODULE": "judian.settings"})
+Model and View test can be found in test_models.py and test.views.py
+"""
+#import os
+#import sys
+from django.test import TestCase
 
 class SimpleDjangoTest(TestCase):
     """Tests for the application views."""
