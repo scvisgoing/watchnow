@@ -1,11 +1,10 @@
 """
 Definition of views.
 """
-
+from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest
-from django.template import RequestContext
-from datetime import datetime
+#from django.template import RequestContext
 
 def home(request):
     """Renders the home page."""

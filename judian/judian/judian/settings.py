@@ -45,7 +45,8 @@ INSTALLED_APPS = [
 ]
 
 # django 2.0 use MIDDLEWARE instead of MIDDLEWARE_CLASSES
-# more detail about cors solution: https://stackoverflow.com/questions/35760943/how-can-i-enable-cors-on-django-rest-framework
+# more detail about cors solution:
+# https://stackoverflow.com/questions/35760943/how-can-i-enable-cors-on-django-rest-framework
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -123,11 +124,14 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-
+# https://docs.djangoproject.com/en/2.0/howto/static-files/
 STATIC_URL = '/static/'
-
 STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
+# Extra places for collectstatic to find static files.
+#STATICFILES_DIRS = (
+#    os.path.join(BASE_DIR, 'staticfiles'),
+#    '/var/www/static/',
+#)
 
 REST_FRAMEWORK = {
     # 使用 dj 標準的 `django.contrib.auth` permissions, 或僅允許未認證使用者只能 read-only

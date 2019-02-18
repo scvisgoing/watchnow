@@ -161,15 +161,15 @@ def json_loads(string):
 
 if __name__ == '__main__':
     config_options = {
-            'test_string': 'a string',
-            'test_int': '3',
-            'test_[int]': '1,2, 3',
-            'test_[str]': 'a, b,c',
-            'test_bool1': '1',
-            'test_bool2': 'yes',
-            'test_bool3': 'true',
-            'test_bool4': '0'
-        }
+        'test_string': 'a string',
+        'test_int': '3',
+        'test_[int]': '1,2, 3',
+        'test_[str]': 'a, b,c',
+        'test_bool1': '1',
+        'test_bool2': 'yes',
+        'test_bool3': 'true',
+        'test_bool4': '0'
+    }
     #ret1 = get_config_option(config_options, 'test_string')
     #ret2 = get_config_option(config_options, 'test_int', required_type='int')
     #ret3 = get_config_option(config_options, 'test_[int]', required_type='[int]')
@@ -187,4 +187,3 @@ if __name__ == '__main__':
     #ret14 = get_config_option(config_options, 'test_string', allowed_values=['other string', 'other other string'])
     ret15 = get_config_option({'empty_string': ''}, 'empty_string', required_type='str', allow_empty=False)
     print()
-

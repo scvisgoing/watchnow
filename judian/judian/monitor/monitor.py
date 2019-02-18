@@ -12,16 +12,15 @@ def program_start_options():
     # 2019/1/24 simplemonitor migrate
     parser = OptionParser() # https://blog.csdn.net/dcrmg/article/details/78045570
     parser.add_option("-v", "--verbose", action="store_true", dest="verbose", default=False, help=SUPPRESS_HELP)
-    parser.add_option("-q", "--quiet",   action="store_true", dest="quiet",   default=False, help=SUPPRESS_HELP)
+    parser.add_option("-q", "--quiet", action="store_true", dest="quiet", default=False, help=SUPPRESS_HELP)
     parser.add_option("-d", "--debug", dest="debug", default=False, action="store_true", help=SUPPRESS_HELP)
     parser.add_option("-f", "--config", dest="config", default="monitor.ini", help="configuration file")
     parser.add_option('-l', '--log-level', dest="loglevel", default="warn", help="Log level: critical, error, warn, info, debug")
-    parser.add_option("-t", "--test",    action="store_true", dest="test",    default=False, help="Test config and exit")
+    parser.add_option("-t", "--test", action="store_true", dest="test", default=False, help="Test config and exit")
     #parser.add_option("-N", "--no-network", dest="no_network", default=False, action="store_true", help="Disable network listening socket")
     parser.add_option("-H", "--no-heartbeat", action="store_true", dest="no_heartbeat", default=False, help="Omit printing the '.' character when running checks")
     parser.add_option('-1', '--one-shot', action='store_true', dest='one_shot', default=False, help='Run the monitors once only, without alerting. Require monitors without "fail" in the name to succeed. Exit zero or non-zero accordingly.')
     parser.add_option('--loops', dest='loops', default=-1, help=SUPPRESS_HELP, type=int)
-    
     # below is useless
     #parser.add_option('-C', '--no-colour', '--no-color', action='store_true', dest='no_colour', default=False, help='Do not colourise log output')
     #parser.add_option('--no-timestamps', action='store_true', dest='no_timestamps', default=False, help='Do not prefix log output with timestamps')
@@ -88,4 +87,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
