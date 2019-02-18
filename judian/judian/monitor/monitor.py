@@ -3,7 +3,7 @@
 import os, sys
 from optparse import OptionParser, SUPPRESS_HELP
 #import austinlog # 2019/1/25 定義一個 sm_logger 給 simplemonitor 用
-from monitor.austinlog import sm_logger
+from monitor.austinlog import SM_LOGGER as sm_logger
 from monitor.envconfig import EnvironmentAwareConfigParser
 
 VERSION = "1.7"
