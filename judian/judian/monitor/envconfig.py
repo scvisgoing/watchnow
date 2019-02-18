@@ -9,11 +9,12 @@ except Exception as e:
 """
 import os
 import re
-import functools
-from configparser import ConfigParser, NoSectionError, NoOptionError
+#import functools
+from configparser import ConfigParser
 from configparser import BasicInterpolation
 
 class EnvironmentAwareInterpolation(BasicInterpolation):
+    """Customize for env variables"""
     r = re.compile('%env:([a-zA-Z0-9_]+)%')
 
     def before_get(self, parser, section, option, value, defaults):
@@ -25,7 +26,7 @@ class EnvironmentAwareInterpolation(BasicInterpolation):
             if env_key in os.environ:
                 value = value.replace(matches.group(0), os.environ[env_key])
             else:
-                raise ValueError('Cannot find {0} in environment for config interpolation'.format(env_key))
+                raise ValueError(f'Cannot find {env_key} in environment for config interpolation')
             matches = self.r.search(value)
             if value == old_value:
                 break
@@ -55,7 +56,8 @@ class EnvironmentAwareConfigParser(ConfigParser):
                 if env_key in os.environ:
                     section = section.replace(matches.group(0), os.environ[env_key])
                 else:
-                    raise ValueError('Cannot find {0} in environment for config interpolation'.format(env_key))
+                    raise ValueError(f'Cannot find {env_key} in environment \
+                    for config interpolation')
 
                 matches = self.r.search(section)
             if section != original_section:
