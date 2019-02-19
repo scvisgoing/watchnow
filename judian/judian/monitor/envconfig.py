@@ -28,8 +28,8 @@ class EnvironmentAwareInterpolation(BasicInterpolation):
             else:
                 raise ValueError(f'Cannot find {env_key} in environment for config interpolation')
             matches = self.r.search(value)
-            if value == old_value:
-                break
+            #if value == old_value: # 這兩個一樣代表27行 matches.group(0) == os.environ[env_key] 這應該不可能
+            #    break
             old_value = value
         return value
 
@@ -48,6 +48,7 @@ class EnvironmentAwareConfigParser(ConfigParser):
     def read(self, filenames):
         """Load a config file and do environment variable interpolation on the section names."""
         result = ConfigParser.read(self, filenames)
+        ''' 暫時不考慮 section 可支援 env 的情況
         for section in self.sections():
             original_section = section
             matches = self.r.search(section)
@@ -65,6 +66,7 @@ class EnvironmentAwareConfigParser(ConfigParser):
                 for (option, value) in self.items(original_section):
                     self.set(section, option, value)
                 self.remove_section(original_section)
+        '''
         return result
 
     def get(self, *args, **kwargs):

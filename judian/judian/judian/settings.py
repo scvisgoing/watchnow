@@ -32,7 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'monitor',
+    'monitor.apps.monitorConfig', # 將 monitor application 的 AppConfig 加進來(dj利用它與monitor溝通) 下面那行就不要了~
+    #'monitor',
     'app',
     'rest_framework', # pip install djangorestframework
     # Add your apps here to enable them
