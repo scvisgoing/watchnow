@@ -3,8 +3,9 @@
 import os, sys
 from optparse import OptionParser, SUPPRESS_HELP
 #import austinlog # 2019/1/25 定義一個 sm_logger 給 simplemonitor 用
-from monitor.austinlog import SM_LOGGER as sm_logger
+from monitor.austinlog import SM_LOGGER as sm_logger # 若要直接從這檔除錯前面的monitor.要拿掉(因為當前目錄)
 from monitor.envconfig import EnvironmentAwareConfigParser
+from monitor.util import get_config_dict
 
 VERSION = "1.7"
 
@@ -28,13 +29,13 @@ def program_start_options():
     #parser.add_option("-f", "--file", dest="filename", metavar="FILE", help="write report to FILE")
     (options, args) = parser.parse_args()
     if options.quiet:
-        #print('Warning: --quiet is deprecated; use --log-level=critical')
+        print('Warning: --quiet is deprecated; use --log-level=critical')
         options.loglevel = 'critical'
     if options.verbose:
-        #print('Warning: --verbose is deprecated; use --log-level=info')
+        print('Warning: --verbose is deprecated; use --log-level=info')
         options.loglevel = 'info'
     if options.debug:
-        #print('Warning: --debug is deprecated; use --log-level=debug')
+        print('Warning: --debug is deprecated; use --log-level=debug')
         options.loglevel = 'debug'
 
     sm_logger.setLevel(options.loglevel.upper())
@@ -49,9 +50,9 @@ def program_start_options():
     try:
         config.read(options.config) # 準備 monitor.ini
     except Exception as e:
-        sm_logger.critical('Unable to read configuration file')
+        sm_logger.critical('Unable to read configuration file, check INI format')
         sm_logger.critical(e)
-        sys.exit(1)
+        raise ValueError(e)#sys.exit(1)
 
     try:
         interval = config.getint("monitor", "interval")
@@ -59,22 +60,22 @@ def program_start_options():
         sm_logger.critical('Missing [monitor] section from config file, or missing the "interval" setting in it')
         sys.exit(1) # interval = 60
 
+    monitors_file = "monitors.ini"
     if config.has_option("monitor", "monitors"):
         monitors_file = config.get("monitor", "monitors")
-    else:
-        monitors_file = "monitors.ini"
 
     sm_logger.info("Loading monitor config from %s", monitors_file)
-
+    sm_logger.debug("This only show on debug mode")
     try:
         allow_pickle = config.getboolean("monitor", "allow_pickle", fallback='true')
-    except ValueError:
+    except ValueError as e:
         sm_logger.critical('allow_pickle should be "true" or "false".')
-        sys.exit(1)
+        sm_logger.critical(e)
+        raise ValueError(e)#sys.exit(1)
     return allow_pickle, monitors_file, config, options, interval
 
 def main():
-    r"""This is where it happens \o/"""
+    """Read the INI file and initial necessary objects"""
     allow_pickle, monitors_file, config, options, interval = program_start_options()
     print()
     return monitors_file
@@ -86,4 +87,15 @@ def main():
 
 
 if __name__ == "__main__":
+    # 要debug這個時記得在偵錯伺服器命令 / 引數 那邊改一下比如 -v -1 或其它可用的引數 -f monitor/monitor.ini
     main()
+    # 測試 ini 檔中設定的環境變數
+    #config = EnvironmentAwareConfigParser()
+    #config.read('monitor/monitor.ini') # 準備 monitor.ini
+    #interval = config.getint("monitor", "interval")
+    #monitors_file = config.get("monitor", "monitors")
+    #www = config.get("monitor", "thomasenv")
+    #xxx = config.get("monitor", "thomasxxx")
+    #allow_pickle = config.getboolean("monitor", "allow_pickle", fallback='true')
+    #result = get_config_dict(config, "monitor")
+    #print()

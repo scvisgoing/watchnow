@@ -1,4 +1,4 @@
-#! python3
+﻿#! python3
 import re
 import sys
 import json
@@ -22,9 +22,9 @@ class SimpleMonitorConfigurationError(ValueError):
     pass
 
 
-def get_config_dict(config, monitor):
+def get_config_dict(config, section):
     """將 section 裡的 option name / value 變成 dict"""
-    options = config.items(monitor)
+    options = config.items(section)
     ret = {}
     for (key, value) in options:
         ret[key] = value
