@@ -27,6 +27,26 @@
                 [[ todo.text ]]
             </li>
         </ol>
+
+        <button v-on:click="reverseMessage">Reverse Message</button>
+        <p>Let's see v-model usage</p>
+        <input v-model="message" placeholder="Type Something">
+
+        <p>Let's see components usage</p>
+        <ol>
+            <todo-item-simple></todo-item-simple>
+            <todo-item-simple></todo-item-simple>
+            <todo-item-simple></todo-item-simple>
+        </ol>
+
+        <p>Let's see components usage 2</p>
+        <ol>
+            <grocery-item
+                v-for="item in groceryList"
+                v-bind:gc="item"
+                v-bind:key="item.id">
+            </grocery-item>
+        </ol>
     </div>
     {% load staticfiles %}
     <script src="{% static 'app/scripts/vue_about.js' %}"></script>
