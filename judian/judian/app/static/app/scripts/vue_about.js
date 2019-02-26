@@ -4,6 +4,11 @@ var app = new Vue({
     data: {
         message: 'Hello Vue!',
         people: people,
+        todos: [
+            { text: 'Learn JavaScript' },
+            { text: 'Learn Vue' },
+            { text: 'Build something awesome' }
+        ]
     },
     methods: {
         greet: function (name) {
@@ -11,3 +16,5 @@ var app = new Vue({
         }
     }
 });
+
+app.todos.push({ text: 'Show me the money'})

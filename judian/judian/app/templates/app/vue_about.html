@@ -21,6 +21,12 @@
                 <a v-bind:href="person.url">[[person.name]]</a> <button v-on:click="greet(person.name)">hey</button>
             </li>
         </ul>
+        <p>Let's see v-for usage</p>
+        <ol>
+            <li v-for="todo in todos">
+                [[ todo.text ]]
+            </li>
+        </ol>
     </div>
     {% load staticfiles %}
     <script src="{% static 'app/scripts/vue_about.js' %}"></script>
