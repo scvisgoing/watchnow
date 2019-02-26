@@ -2,6 +2,7 @@
 Definition of views.
 """
 import random
+import json
 from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest
@@ -63,4 +64,9 @@ def about(request):
             "url": "https://example.com",
         })
     context["items"] = items
-    return render(request, 'app/about.html', context)
+    context["items_json"] = json.dumps(items) # Use json as data format
+    #return render(request, 'app/about.html', context)
+    return render(request, 'app/vue_about.html', context)
+
+# https://scrimba.com/playlist/pXKqta Learn
+# 

@@ -1,0 +1,44 @@
+﻿{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+{% if items %}
+    <!--Load Vue.js from a CDN-->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!--Render our JSON data as JavaScript-->
+    <script type='text/javascript'>
+        var people = {{ items_json | safe }}; // looks-like [{"name": "bob", "age": 32, "url": "https://example.com"}, (...)]
+    </script>
+
+    <div id="app">
+        [[message]]
+
+        <ul>
+            <li v-for="person in people">
+                <a v-bind:href="person.url">[[person.name]]</a> <button v-on:click="greet(person.name)">hey</button>
+            </li>
+        </ul>
+    </div>
+    <script>
+        var app = new Vue({
+            delimiters: ['[[', ']]'],
+            el: '#app',
+            data: {
+                message: 'Hello Vue!',
+                people: people,
+            },
+            methods: {
+                greet: function (name) {
+                    console.log('Hello from ' + name + '!')
+                }
+            }
+        });
+    </script>
+{% else %}
+    <p>No items available. BABA</p>
+{% endif %}
+
+{% endblock %}
