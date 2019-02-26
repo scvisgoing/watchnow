@@ -22,21 +22,9 @@
             </li>
         </ul>
     </div>
-    <script>
-        var app = new Vue({
-            delimiters: ['[[', ']]'],
-            el: '#app',
-            data: {
-                message: 'Hello Vue!',
-                people: people,
-            },
-            methods: {
-                greet: function (name) {
-                    console.log('Hello from ' + name + '!')
-                }
-            }
-        });
-    </script>
+    {% load staticfiles %}
+    <script src="{% static 'app/scripts/vue_about.js' %}"></script>
+    <!--<script src="index.js"></script> This is wrong on django template-->
 {% else %}
     <p>No items available. BABA</p>
 {% endif %}
