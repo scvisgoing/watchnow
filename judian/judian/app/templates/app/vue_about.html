@@ -47,6 +47,18 @@
                 v-bind:key="item.id">
             </grocery-item>
         </ol>
+
+        <p>In addition to text interpolation, we can also bind element attributes</p>
+        <ul>
+            <li><span title="This span element NOT bind, you always see this string">Hardcode title</span></li>
+            <li><span v-bind:title="timeToLoadPage">
+                Hover your mouse over me for a few seconds
+                to see my dynamically bound title!
+                </span>
+            </li>
+        </ul>
+        
+        
     </div>
     {% load staticfiles %}
     <script src="{% static 'app/scripts/vue_about.js' %}"></script>
