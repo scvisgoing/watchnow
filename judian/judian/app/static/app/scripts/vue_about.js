@@ -35,6 +35,7 @@ Vue.component('grocery-item', {
 // data object properties 一定要在初始的時後就給定，不能事後再用 vm.b = 'hi' 這不會觸發任何view updates
 // 在生成 Vue 實例時給的 options 都可用特殊的方式取得，比如 vm.$el, vm.$data, 更詳細的說 vm.$el === document.getElementById('app')
 // vm.$watch
+// 這邊你可以直接 new Vue 而不需 import Vue from 'vue' 那是因為在 vue_about.html 已經有用<script>裝了
 var vm = new Vue({
     delimiters: ['[[', ']]'],
     el: '#app',
@@ -116,7 +117,7 @@ var vm = new Vue({
         // whenever question changes, this function will run
         question: function (newQuestion, oldQuestion) {
             this.answer = 'Waiting for you to stop typing...'
-            this.getAnswer()//this.debouncedGetAnswer()
+            this.debouncedGetAnswer()
         }
     },
     // lifecycle hooks give you the chance to add code at specific stages.
@@ -128,7 +129,7 @@ var vm = new Vue({
         // In this case, we want to limit how often we access yesno.wtf/api, waiting until the user has completely
         // finished typing before making the ajax request.
         // To learn more about the _.debounce function (and its cousin _.throttle), visit: https://lodash.com/docs#debounce
-        //this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
+        this.debouncedGetAnswer = _.debounce(this.getAnswer, 500)
     }
 });
 

@@ -8,6 +8,12 @@
 {% if items %}
     <!--Load Vue.js from a CDN-->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- Since there is already a rich ecosystem of ajax libraries    -->
+    <!-- and collections of general-purpose utility methods, Vue core -->
+    <!-- is able to remain small by not reinventing them. This also   -->
+    <!-- gives you the freedom to use what you're familiar with. -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
     <!--Render our JSON data as JavaScript-->
     <script type='text/javascript'>
         var people = {{ items_json | safe }}; // looks-like [{"name": "bob", "age": 32, "url": "https://example.com"}, (...)]
@@ -72,12 +78,7 @@
     <script src="{% static 'app/scripts/vue_about.js' %}"></script>
     <!--<script src="index.js"></script> This is wrong on django template-->
 
-    <!-- Since there is already a rich ecosystem of ajax libraries    -->
-    <!-- and collections of general-purpose utility methods, Vue core -->
-    <!-- is able to remain small by not reinventing them. This also   -->
-    <!-- gives you the freedom to use what you're familiar with. -->
-    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+    
 {% else %}
     <p>No items available. BABA</p>
 {% endif %}
