@@ -29,6 +29,9 @@
         </ol>
 
         <button v-on:click="reverseMessage">Reverse Message</button>
+        <p>Method reversed message: "[[ reverseMessage2() ]]"</p>
+        <p>Computed reversed message: "[[ cpReverseMessage ]]"</p>
+        <p>data and computed both has, find which: "[[ shitshit ]]"</p>
         <p>Let's see v-model usage</p>
         <input v-model="message" placeholder="Type Something">
 
@@ -56,13 +59,25 @@
                 to see my dynamically bound title!
                 </span>
             </li>
+            <li><span v-once>This will never change: [[ message ]]</span></li>
         </ul>
+
+        <p>See v-disable how it works</p>
+        <button v-bind:disabled="checkIt">Button</button>
+        <button v-if="checkIt">Button</button>
         
         
     </div>
     {% load staticfiles %}
     <script src="{% static 'app/scripts/vue_about.js' %}"></script>
     <!--<script src="index.js"></script> This is wrong on django template-->
+
+    <!-- Since there is already a rich ecosystem of ajax libraries    -->
+    <!-- and collections of general-purpose utility methods, Vue core -->
+    <!-- is able to remain small by not reinventing them. This also   -->
+    <!-- gives you the freedom to use what you're familiar with. -->
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
 {% else %}
     <p>No items available. BABA</p>
 {% endif %}
